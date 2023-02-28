@@ -1,3 +1,3 @@
-# Practice code challenges for interview in python
+# Python code challenges
 
-Here are some code challenges for practicing algoruthms in python
+Here are some code challenges for practicing algorithms in python
