@@ -50,9 +50,9 @@ def romanToInt(s):
 
 def Test():
     print("test start...")   
-    print(romanToInt("MCMXCIV"))
     print(romanToInt("III"))
     print(romanToInt("LVIII"))
+        print(romanToInt("MCMXCIV"))
     print("test end")    
 
 if __name__ =="__main__":
