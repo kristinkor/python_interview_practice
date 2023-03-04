@@ -1,41 +1,33 @@
  
 def validateParenthesis(s):
-    openlist = {"(":[],
-        "{":[],
-        "[":[]
-    }
-    closelist = {")":[],
-        "}":[],
-        "]":[]
-    }
-    for i in range(0,len(s)):
-        if(s[i] in openlist):
-            openlist[s[i]].append(i)
-            #openlist.update({s[i]:[i]})
-        elif(s[i] in closelist):
-            closelist[s[i]].append(i)
+        parenthesis = {"(":")",
+            "{":"}",
+            "[":"]"
+        }
 
-    res = True
-    
-    if len(openlist['(']) == len(closelist[')']) and len(openlist['{']) == len(closelist['}']) and len(openlist['[']) == len(closelist[']']):
-        
-        if compareTwo(openlist['('], closelist[')']) and compareTwo(openlist['{'], closelist['}']) and compareTwo(openlist['['], closelist[']']):
-            return True
-    else:
-        return False    
-    print(openlist)
-    print(closelist)
+        stack = []
 
-def compareTwo(arr1,arr2):
-    for i in range(0, len(arr1)):
-        if arr1[i] > arr2[i]:
+        if (len(s)%2 != 0):
             return False
-    return True
+
+        for i in s:
+            if i in parenthesis.keys():     
+                stack.append(i)
+                #openlist.update({s[i]:[i]}) 
+            else:
+                if stack == []:     
+                    return False
+                elif (len(stack) > 0): 
+                    if ( i != parenthesis[stack.pop()]):
+                        return False
+
+                    
+        return stack == []  
 
 def Test():
     print("test start...")  
 
-    print(validateParenthesis("sdgsfg{{gvdfgd}sgsfg()[]d"))
+    print(validateParenthesis("()([]){[]}{}"))
 
     
     print("test end")    
