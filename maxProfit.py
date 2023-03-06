@@ -36,7 +36,7 @@ def maxProfit(prices):
 
 def Test():
     print("test start...")   
-    arr = [1,3,6,8,5,3,5,67,9,0,46,8]
+    arr = [1,3,6,8,5,3,5,67,9,0,46,8,345,44]
     print(maxProfit(arr))
     print("test end")    
 
