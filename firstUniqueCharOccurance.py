@@ -3,27 +3,22 @@ def firstUniqChar( s):
     :type s: str
     :rtype: int
     """
-   
+    
     for i in range(0,len(s)-1):
-        temp = s[i]
         
-        for j in range(i+1, len(s)):
-            if(temp == s[j]):
-              
-                s= s.replace(s[i], '$')
-                s = s.replace(s[j], '$')
-                
+        count = 0
+        for j in range(i, len(s)):
+            if(s[i] == s[j]):
+                count +=1
+        if(count == 1):
+            return i
             
-    index = -1      
-    for i in range(0,len(s)): 
-        if(s[i]!= "$"):
-            index = i
-            break
-    return index         
+    return -1      
+         
 
 def Test():
     print("test start...")   
-    arr = "starStarstarl"
+    arr = "starstarstarl"
     print(firstUniqChar(arr))
     print("test end")    
 
