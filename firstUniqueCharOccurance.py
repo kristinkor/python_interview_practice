@@ -3,14 +3,18 @@ def firstUniqChar( s):
     :type s: str
     :rtype: int
     """
-    
+    char_index = {}
+
+    for char in s:
+        if char not in char_index:
+            char_index[char] = 1
+        else:
+            char_index[char] +=1
+            
+
+
     for i in range(0,len(s)):
-        
-        count = 0
-        for j in range(0, len(s)):
-            if(s[i] == s[j]):
-                count +=1
-        if(count == 1):
+        if char_index[s[i]] == 1:
             return i
             
     return -1      
@@ -18,8 +22,8 @@ def firstUniqChar( s):
 
 def Test():
     print("test start...")   
-    arr = "starstarstarl"
-    print(firstUniqChar(arr))
+    s = "dddccdbba"
+    print(firstUniqChar(s))
     print("test end")    
 
 if __name__ =="__main__":
