@@ -3,32 +3,37 @@ def decode(s,decode):
     :type s: str
     :rtype: int
     """
-    n=6
-    result = ""
-    temp = ""
-    
-    for i in range(0, len(s), n):
-        
-        temp = s[i:i+n]
-        
-        res = list(filter(lambda x: temp in x, decode))
-        
-        if(len(res)>0):
+    mapping = {}
+    res = ""
+    for item in decode:
+        if item.startswith("[newline]"):
+            char, code = "\\n", item.split()[1]
+        else:
+            char, code = item.split()
+        mapping[code] = char
+
+   
+    i = 0
+    while i < len(s):
+        for code in mapping:
+            if s[i:i+len(code)] == code:
+                if mapping[code] == "\\n":
+                    res += "\n"
+                else:
+                    res += mapping[code]
+                i += len(code)
+                break
+        else:
+            # If no code is found, skip ahead one bit
+            i += 1
+    return res      
+
             
-            if("[newline]" in ' '.join(res)):
-                result += "\n"
-            else:
-                
-                result +=str(res[0][0])
-        # if temp in decode:
-        #     result += decode[0]
-    return result        
-         
 
 def Test():
     print("test start...")   
     s = "dddccdbba"
-    print(decode("111110000001100100111111100101110001111110", ["a 111110", "b 0000011", "[newline] 111111"]))
+    print(decode("111110000001100100111111100101110001111110", ["a	100100", "b	100101", "p 111110", "c	110001", "d	100000"]))
     print("test end")    
 
 if __name__ =="__main__":
