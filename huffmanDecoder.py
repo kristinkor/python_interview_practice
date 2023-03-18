@@ -8,8 +8,10 @@ def decode(s,decode):
     for item in decode:
         if item.startswith("[newline]"):
             char, code = "\\n", item.split()[1]
-        else:
+        elif len(item.split()) == 2:
             char, code = item.split()
+        else:
+            continue
         mapping[code] = char
 
    
@@ -33,7 +35,7 @@ def decode(s,decode):
 def Test():
     print("test start...")   
     s = "dddccdbba"
-    print(decode("111110000001100100111111100101110001111110", ["a	100100", "b	100101", "p 111110", "c	110001", "d	100000"]))
+    print(decode("111110000001100100111111100101110001111110", ["a	100100", "b	100101", "p     111110", "c	110001", "d	100000"]))
     print("test end")    
 
 if __name__ =="__main__":
